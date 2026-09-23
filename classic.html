@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jason Croft Digital Flier</title>
+<meta name="description" content="Sherwin-Williams field consultant for property owners and managers in the Napa / North Bay area.">
+<style>
+  :root {
+    --sw-blue: #1b4f8f;
+    --sw-blue-light: #e8f0fb;
+    --sw-red: #a50f15;
+    --sw-red-light: #fdeaea;
+    --ink: #151515;
+    --muted: #555;
+    --card: #fff;
+    --bg: #f2f2f2;
+    --line: #d6d6d6;
+    --warn: #b76e00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --sw-blue-light: #1a2536; --sw-red-light: #33191a; --ink: #eee; --muted: #aaa;
+      --card: #1e1e1e; --bg: #121212; --line: #333; --warn: #f0a93b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --sw-blue-light: #1a2536; --sw-red-light: #33191a; --ink: #eee; --muted: #aaa;
+    --card: #1e1e1e; --bg: #121212; --line: #333; --warn: #f0a93b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; line-height: 1.4; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 16px; }
+
+  .draft { background: #fff8d6; color: #4a3b00; border: 1px solid #d9b400; border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-bottom: 14px; }
+  .draft b { color: #000; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; margin-right: 4px; }
+  .dot.hi { background: #2e8b3d; } .dot.mod { background: #e0a000; } .dot.low { background: #c0392b; }
+
+  header.hero { background: #fff; border-radius: 12px; padding: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; justify-content: space-between; border: 1px solid var(--line); }
+  header.hero img { max-width: 320px; width: 100%; }
+  header.hero .q { background: #000; color: #fff; font-weight: 700; padding: 10px 16px; border-radius: 6px; font-size: 18px; }
+  .intro { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-top: 12px; text-align: center; }
+  .intro h1 { font-size: 20px; margin: 0 0 4px; }
+  .intro p { margin: 0; color: var(--muted); font-style: italic; }
+
+  .contact { background: #000; color: #fff; border-radius: 12px; padding: 16px; margin-top: 12px; }
+  .contact .nm { font-size: 22px; font-weight: 700; }
+  .contact .ttl { color: #ccc; }
+  .contact .area { color: #aaa; font-size: 13px; margin-top: 2px; }
+  .btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-top: 12px; }
+  .btns a { display: block; text-align: center; background: #fff; color: #000; text-decoration: none; font-weight: 700; padding: 11px 8px; border-radius: 8px; }
+  .btns a.save { background: var(--sw-red); color: #fff; }
+
+  h2.sec { color: #fff; margin: 20px 0 0; padding: 8px 14px; border-radius: 10px 10px 0 0; font-style: italic; font-size: 19px; }
+  h2.sec.red { background: var(--sw-red); } h2.sec.blue { background: var(--sw-blue); }
+  .services { background: var(--sw-red-light); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 10px 10px; padding: 10px 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 6px 18px; }
+  .services div { font-weight: 600; padding: 4px 0; }
+  .services a { color: inherit; }
+
+  .sub { margin: 16px 0 6px; font-weight: 700; color: var(--sw-blue); font-size: 17px; }
+  :root[data-theme="dark"] .sub { color: #8db8ef; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sub { color: #8db8ef; } }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .tile { position: relative; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; transition: transform .12s, box-shadow .12s; }
+  .tile:hover, .tile:focus-visible { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  .tile .img { height: 120px; background: #fff; display: flex; align-items: center; justify-content: center; }
+  .tile .img img { max-width: 100%; max-height: 120px; object-fit: contain; }
+  .tile .img.two img { max-width: 50%; }
+  .tile .lbl { padding: 8px 10px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 6px; background: var(--sw-blue-light); }
+  .tile .lbl small { font-weight: 400; color: var(--muted); white-space: nowrap; }
+  .tile .go { padding: 7px 10px; font-size: 13px; font-weight: 700; color: #fff; background: var(--sw-blue); text-decoration: underline; }
+  .tile .go.ask { background: #555; }
+  .tile .conf { position: absolute; top: 6px; right: 6px; }
+  .tile .conf .dot { width: 14px; height: 14px; border: 2px solid #fff; margin: 0; }
+
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin: 24px 0 8px; }
+  footer img { width: 120px; background: #fff; padding: 6px; border-radius: 6px; }
+
+  body.clean .draft, body.clean .conf { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="draft">
+    <b>DRAFT for review.</b> Colored dots show how sure the link is:
+    <span class="dot hi"></span>high &nbsp; <span class="dot mod"></span>moderate (a suggestion) &nbsp; <span class="dot low"></span>no matching Sherwin-Williams page found, so the tile opens an email to Jason for now.
+    <a href="#" onclick="document.body.classList.add('clean');return false;">Hide draft markings</a> · <a href="./">See the new version</a>
+  </div>
+
+  <header class="hero">
+    <img src="img/sw-logo.png" alt="Sherwin-Williams">
+    <div class="q">Do you own, manage, or maintain property?</div>
+  </header>
+
+  <div class="intro">
+    <h1>Field Consultants can help with maintenance operations!</h1>
+    <p>Our support &amp; expertise are included with your business account. We work in the field so we can help on site.</p>
+  </div>
+
+  <section class="contact" id="contact">
+    <div class="nm">Jason Croft</div>
+    <div class="ttl">Field Consultant &amp; Account Manager, Sherwin-Williams</div>
+    <div class="area">Napa &middot; Vacaville &middot; Fairfield &middot; Vallejo &middot; Santa Rosa &middot; Rohnert Park &middot; Novato &middot; San Rafael</div>
+    <div class="btns">
+      <a href="tel:+17074718394">Call</a>
+      <a href="sms:+17074718394">Text</a>
+      <a href="mailto:Jason.M.Croft@sherwin.com?subject=Question%20from%20your%20flier">Email</a>
+      <a class="save" id="saveContact" href="#" download="Jason-Croft.vcf">Save my contact</a>
+    </div>
+  </section>
+
+  <h2 class="sec red">SERVICES</h2>
+  <div class="services">
+    <div>Account Development and Organization</div>
+    <div>Write Project &amp; CapEx Specs</div>
+    <div>Procurement Walkthroughs (Yardi, OPS/RealPage, etc.)</div>
+    <div>Create Product &amp; Color Guides</div>
+    <div>Identify Efficient Processes to Reduce Wasted Time</div>
+    <div><a href="https://www.sherwin-williams.com/property-facility-managers/color" target="_blank" rel="noopener">Color Matching on Site</a></div>
+    <div>Review Pricing to Identify the Right Products</div>
+    <div>Training</div>
+    <div style="grid-column: 1 / -1;"><a href="https://www.sherwin-williams.com/property-facility-managers/project-solutions/multi-family-communities/your-property-management-partner" target="_blank" rel="noopener">How Sherwin-Williams supports property managers &rarr;</a></div>
+  </div>
+
+  <h2 class="sec blue">PRODUCTS</h2>
+  <div id="groups"></div>
+
+  <footer>
+    <p>Scan to save Jason's contact</p>
+    <img src="img/qr-contact.png" alt="QR code: Jason's contact">
+    <p>Product links go to sherwin-williams.com. Ask Jason about account pricing.</p>
+  </footer>
+</div>
+
+<script>
+  const SW = "https://www.sherwin-williams.com/property-facility-managers";
+  const ASK = t => "mailto:Jason.M.Croft@sherwin.com?subject=" + encodeURIComponent("Question about " + t);
+  // conf: hi = high confidence, mod = moderate suggestion, low = no SW page found (falls back to email Jason)
+  const groups = [
+    ["Coatings", [
+      ["Scuff Resistant", "scuff-resistant.jpg", SW + "/paint-coatings-interior", "hi"],
+      ["Epoxy Floor", "epoxy-floor.jpg", SW + "/floor-coatings-interior", "hi"],
+      ["Traffic Marking", "traffic-marking.jpg", SW + "/pavement-turf-marking", "hi"],
+      ["Roof", ["roof.jpg", "roof-2.jpg"], SW + "/roof-coatings", "hi"],
+      ["Anti-Graffiti", "anti-graffiti.jpg", "https://industrial.sherwin-williams.com/na/us/en/protective-marine/catalog/category/products-by-industry/anti-graffiti-coatings.25693243.html", "hi"],
+      ["Pool", "pool.jpg", "https://industrial.sherwin-williams.com/na/us/en/resin-flooring/industry/hospitality-entertainment/hospitality-swimming-pool-deck.html", "mod"],
+    ]],
+    ["Window Treatments & Wallpaper", [
+      ["Roller Shades", "roller-shades.jpg", null, "low"],
+      ["Blinds", "blinds.jpg", null, "low"],
+      ["Wallpaper", "wallpaper.jpg", SW + "/products/commercial-wallpaper-floorcovering", "hi"],
+    ]],
+    ["Wall Protection", [
+      ["Corner Guards, Wall Guards", "corner-guards.jpg", null, "low"],
+      ["Cove Base", "cove-base.jpg", SW + "/floorcovering/floorcovering-products/floorcovering-accessory-products", "mod"],
+      ["Kick Plates", "kick-plates.jpg", null, "low"],
+    ]],
+    ["Supplies & Equipment", [
+      ["Brushes", "brushes.jpg", SW + "/brushes", "hi"],
+      ["Rollers", "rollers.jpg", SW + "/rollers-covers-accessories", "hi"],
+      ["Caulk", "caulk.jpg", SW + "/caulks-sealants-caulking-tools", "hi"],
+      ["Tape", "tape.jpg", SW + "/tape-masking", "hi"],
+      ["Pressure Washers", "pressure-washers.jpg", SW + "/spray-equipment/pressure-washers", "hi"],
+      ["Dustless Sanding", "dustless-sanding.jpg", SW + "/sand-paper-abrasives/sanding-tools", "hi"],
+      ["Ladders", "ladders.jpg", SW + "/ladders-scaffolds-climbing-equipment", "hi"],
+      ["Concrete Prep", "concrete-prep.jpg", SW + "/exterior-masonry-concrete-products", "mod"],
+    ]],
+  ];
+  const root = document.getElementById("groups");
+  for (const [title, items] of groups) {
+    const h = document.createElement("div"); h.className = "sub"; h.textContent = title; root.appendChild(h);
+    const g = document.createElement("div"); g.className = "tiles";
+    for (const [label, img, url, conf] of items) {
+      const a = document.createElement("a"); a.className = "tile";
+      a.href = url || ASK(label);
+      if (url) { a.target = "_blank"; a.rel = "noopener"; }
+      const imgs = Array.isArray(img) ? img : [img];
+      a.innerHTML =
+        `<span class="conf"><span class="dot ${conf}"></span></span>` +
+        `<div class="img${imgs.length > 1 ? " two" : ""}">${imgs.map(s => `<img src="img/${s}" alt="">`).join("")}</div>` +
+        `<div class="lbl">${label}</div>` +
+        `<div class="go ${url ? "" : "ask"}">${url ? "Shop on sherwin-williams.com &#8599;" : "Email Jason about this &#9993;"}</div>`;
+      g.appendChild(a);
+    }
+    root.appendChild(g);
+  }
+  const vcf = ["BEGIN:VCARD","VERSION:3.0","N:Croft;Jason;;;","FN:Jason Croft","ORG:Sherwin-Williams",
+    "TITLE:Field Consultant & Account Manager","TEL;TYPE=CELL:+17074718394","EMAIL;TYPE=WORK:Jason.M.Croft@sherwin.com",
+    "NOTE:Sherwin-Williams Account Manager in Napa CA","END:VCARD"].join("\r\n");
+  document.getElementById("saveContact").href = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcf);
+</script>
+</body>
+</html>
