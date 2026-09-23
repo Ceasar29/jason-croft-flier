@@ -61,7 +61,7 @@
   .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
   .hero::after { content: ""; position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(8,24,46,.35) 0%, rgba(8,24,46,.68) 40%, rgba(8,24,46,.93) 100%); }
-  .hero .wrap { position: relative; z-index: 1; padding-top: 120px; padding-bottom: 36px; }
+  .hero .wrap { position: relative; z-index: 1; padding-top: 110px; padding-bottom: 52px; }
   .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700;
     letter-spacing: .06em; text-transform: uppercase; background: rgba(255,255,255,.16);
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: 7px 12px; border-radius: 999px; }
@@ -81,6 +81,28 @@
   .mono { width: 46px; height: 46px; border-radius: 50%; background: #fff; color: var(--navy); display: grid; place-items: center; font-weight: 800; font-size: 17px; flex: none; }
   .who b { display: block; font-size: 16px; }
   .who span { font-size: 13.5px; color: rgba(255,255,255,.78); }
+
+  /* ---------- contact card under hero ---------- */
+  .card-contact { position: relative; z-index: 2; margin-top: -22px; background: var(--card); border: 1px solid var(--line);
+    border-radius: 20px; box-shadow: var(--shadow); padding: 18px; display: grid; gap: 12px; }
+  .cc-head { display: flex; align-items: center; gap: 12px; }
+  .cc-head .mono { background: var(--navy); color: #fff; width: 52px; height: 52px; font-size: 18px; }
+  .cc-head b { display: block; font-size: 19px; line-height: 1.2; }
+  .cc-head span { color: var(--muted); font-size: 14px; }
+  .nw { white-space: nowrap; }
+  [data-phone-text] { font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, sans-serif; letter-spacing: .01em; }
+  .card-contact { margin-bottom: 14px; }
+  .cc-row { display: flex; align-items: center; gap: 12px; text-decoration: none; padding: 10px 12px; border-radius: 14px;
+    background: var(--blue-soft); min-height: 56px; }
+  .cc-row svg { width: 22px; height: 22px; color: var(--blue); flex: none; }
+  .cc-row small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .cc-row b { display: block; font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
+  .cc-area { display: flex; align-items: flex-start; gap: 8px; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+  .cc-area svg { width: 18px; height: 18px; flex: none; margin-top: 1px; }
+  @media (min-width: 640px) {
+    .card-contact { grid-template-columns: 1.2fr 1fr 1.3fr; align-items: center; padding: 20px 22px; }
+    .cc-area { grid-column: 1 / -1; }
+  }
 
   /* ---------- section nav ---------- */
   .jump { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent);
@@ -154,7 +176,8 @@
   .contact .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; }
   .contact .grid .btn { width: 100%; }
   .btn-white { background: #fff; color: var(--navy); }
-  .contact .lines { margin-top: 18px; font-size: 14.5px; color: rgba(255,255,255,.85); position: relative; }
+  .contact .lines { margin-top: 18px; font-size: 15.5px; position: relative; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .contact .lines a { white-space: nowrap; font-variant-numeric: tabular-nums; }
   .contact .lines a { color: #fff; font-weight: 700; text-decoration: none; }
   .contact .qr { display: none; }
 
@@ -218,10 +241,18 @@
       <a class="btn btn-red" data-tel href="#"><svg><use href="#i-phone"/></svg>Call Jason</a>
       <a class="btn btn-glass" data-vcf href="#" download="Jason-Croft.vcf"><svg><use href="#i-save"/></svg>Save contact</a>
     </div>
-    <div class="who">
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="card-contact" aria-label="Contact Jason">
+    <div class="cc-head">
       <div class="mono" aria-hidden="true">JC</div>
-      <div><b data-name>Jason Croft</b><span data-title>Field Consultant &amp; Account Manager</span></div>
+      <div><b data-name>Jason Croft</b><span><span data-title>Field Consultant &amp; Account Manager</span> · <span class="nw">Sherwin-Williams</span></span></div>
     </div>
+    <a class="cc-row" data-tel href="#"><svg><use href="#i-phone"/></svg><span><small>Mobile</small><b data-phone-text></b></span></a>
+    <a class="cc-row" data-mail href="#"><svg><use href="#i-mail"/></svg><span><small>Email</small><b data-email-text></b></span></a>
+    <div class="cc-area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-area-text></span></div>
   </div>
 </div>
 
@@ -329,7 +360,7 @@
     <div>
       <div class="head">
         <div class="mono" aria-hidden="true">JC</div>
-        <div><h2 data-name>Jason Croft</h2><div class="role"><span data-title>Field Consultant &amp; Account Manager</span> · Sherwin-Williams</div></div>
+        <div><h2 data-name>Jason Croft</h2><div class="role"><span data-title>Field Consultant &amp; Account Manager</span> · <span class="nw">Sherwin-Williams</span></div></div>
       </div>
       <div class="area" data-area></div>
       <div class="grid">
@@ -338,7 +369,7 @@
         <a class="btn btn-white" data-mail href="#"><svg><use href="#i-mail"/></svg>Email</a>
         <a class="btn btn-white" data-vcf href="#" download="Jason-Croft.vcf"><svg><use href="#i-save"/></svg>Save</a>
       </div>
-      <div class="lines"><span data-phone-text></span> · <a data-mail data-email-text href="#"></a></div>
+      <div class="lines"><a data-tel data-phone-text href="#"></a><a data-mail data-email-text href="#"></a></div>
     </div>
     <div class="qr"><img src="img/qr-contact.png" alt="QR code that saves Jason's contact"><div>Scan to save contact</div></div>
   </div>
@@ -358,7 +389,7 @@
   const JASON = {
     first: "Jason", last: "Croft",
     title: "Field Consultant & Account Manager",
-    phone: "+17074718394", phoneText: "707-471-8394",
+    phone: "+17074718394", phoneText: "(707) 471-8394",
     email: "Jason.M.Croft@sherwin.com",
     area: ["Napa", "Vacaville", "Fairfield", "Vallejo", "Santa Rosa", "Rohnert Park", "Novato", "San Rafael"],
   };
@@ -372,6 +403,7 @@
   document.querySelectorAll("[data-ask]").forEach(e => e.href = mail("Quote request: " + e.dataset.ask));
   document.querySelectorAll("[data-phone-text]").forEach(e => e.textContent = JASON.phoneText);
   document.querySelectorAll("[data-email-text]").forEach(e => e.textContent = JASON.email);
+  document.querySelectorAll("[data-area-text]").forEach(e => e.textContent = "Serving " + JASON.area.join(" · "));
   document.querySelectorAll("[data-area]").forEach(e => { e.innerHTML = ""; JASON.area.forEach(a => { const s = document.createElement("span"); s.textContent = a; e.appendChild(s); }); });
   const vcf = ["BEGIN:VCARD", "VERSION:3.0", `N:${JASON.last};${JASON.first};;;`, `FN:${full}`, "ORG:Sherwin-Williams",
     `TITLE:${JASON.title}`, `TEL;TYPE=CELL:${JASON.phone}`, `EMAIL;TYPE=WORK:${JASON.email}`,
