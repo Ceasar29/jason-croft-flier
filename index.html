@@ -407,7 +407,7 @@
   document.querySelectorAll("[data-area]").forEach(e => { e.innerHTML = ""; JASON.area.forEach(a => { const s = document.createElement("span"); s.textContent = a; e.appendChild(s); }); });
   const vcf = ["BEGIN:VCARD", "VERSION:3.0", `N:${JASON.last};${JASON.first};;;`, `FN:${full}`, "ORG:Sherwin-Williams",
     `TITLE:${JASON.title}`, `TEL;TYPE=CELL:${JASON.phone}`, `EMAIL;TYPE=WORK:${JASON.email}`,
-    "NOTE:Sherwin-Williams Account Manager in Napa CA", "END:VCARD"].join("\r\n");
+    "NOTE:Sherwin-Williams Account Manager for the North Bay - Napa / Solano / Sonoma / Marin counties", "END:VCARD"].join("\r\n");
   const vcfHref = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcf);
   document.querySelectorAll("[data-vcf]").forEach(e => e.href = vcfHref);
 

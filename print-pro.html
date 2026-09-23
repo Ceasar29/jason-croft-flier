@@ -27,7 +27,7 @@
   @media print { html, body { background: #fff; } .page { margin: 0; box-shadow: none; } .note { display: none; } }
 
   /* hero */
-  .hero { position: relative; height: 3.05in; color: #fff; flex: none; }
+  .hero { position: relative; height: 2.9in; color: #fff; flex: none; }
   .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
   .hero::after { content: ""; position: absolute; inset: 0;
     background: linear-gradient(100deg, rgba(10,30,58,.96) 0%, rgba(10,30,58,.86) 42%, rgba(10,30,58,.35) 75%, rgba(10,30,58,.15) 100%); }
@@ -42,7 +42,7 @@
   .qr-box b { display: block; font-size: 8.5pt; line-height: 1.2; margin-top: 3px; }
   .qr-box span { display: block; font-size: 7pt; color: var(--muted); }
 
-  .body { padding: .2in .45in .2in; flex: 1; display: flex; flex-direction: column; gap: .16in; }
+  .body { padding: .18in .45in .16in; flex: 1; display: flex; flex-direction: column; gap: .14in; }
   .kicker { font-size: 8pt; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--red); margin: 0 0 .05in; }
   .h2 { font-size: 14pt; font-weight: 800; letter-spacing: -.01em; margin: 0 0 .09in; color: var(--navy); }
   .h2 small { font-size: 9pt; font-weight: 500; color: var(--muted); margin-left: 6px; letter-spacing: 0; }
@@ -55,7 +55,7 @@
 
   /* photo grid */
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .08in; }
-  .tile { position: relative; height: 1.08in; border-radius: 10px; overflow: hidden; background: #ddd; }
+  .tile { position: relative; height: 1.0in; border-radius: 10px; overflow: hidden; background: #ddd; }
   .tile img { width: 100%; height: 100%; object-fit: cover; }
   .tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(8,20,40,.82) 100%); }
   .tile .lab { position: absolute; left: .09in; right: .09in; bottom: .07in; z-index: 1; color: #fff; }
@@ -73,7 +73,7 @@
   .sup b { font-size: 7pt; line-height: 1.1; display: block; }
 
   /* contact band */
-  .contact { flex: none; margin-top: auto; background: var(--navy); color: #fff; padding: .22in .45in; display: grid; grid-template-columns: auto 1fr auto; gap: .25in; align-items: center; position: relative; overflow: hidden; }
+  .contact { flex: none; margin-top: auto; background: var(--navy); color: #fff; padding: .2in .45in; display: grid; grid-template-columns: auto 1fr auto; gap: .25in; align-items: center; position: relative; overflow: hidden; }
   .contact::before { content: ""; position: absolute; right: 1.4in; top: -1.1in; width: 2.4in; height: 2.4in; border-radius: 50%; background: rgba(255,255,255,.05); }
   .mono { width: .78in; height: .78in; border-radius: 50%; background: #fff; color: var(--navy); display: grid; place-items: center; font-weight: 800; font-size: 20pt; }
   .who .nm { font-size: 19pt; font-weight: 800; line-height: 1.1; }
