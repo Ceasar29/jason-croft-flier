@@ -6,7 +6,8 @@ Live page: https://ceasar29.github.io/jason-croft-flier/
 |---|---|
 | `index.html` | Main digital flier (phone-first). The top QR code on the printed flier opens this. |
 | `classic.html` | Same layout as the original paper flier, with clickable tiles. |
-| `print.html` | Printable letter-size flier (print with margins set to None). |
+| `print-pro.html` | Printable letter-size marketing flier, new design (margins None, background graphics on). |
+| `print.html` | Printable letter-size flier in the original paper layout. |
 | `img/` | Photos, logo and both QR codes. |
 
 ## Changing contact details
